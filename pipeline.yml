@@ -17,7 +17,7 @@ steps:
   displayName: Build and push an image to container registry
   inputs:
     containerRegistry: 'kunmipipelinetest'
-    repository: '$(imageName)'
+    repository: 'testing'
     command: 'buildAndPush'
     Dockerfile: '**/test/Dockerfile'
     tags: '$(tag)'
