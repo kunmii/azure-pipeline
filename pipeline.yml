@@ -39,6 +39,6 @@ steps:
     dockerRegistryServiceConnection: 'kunmipipelinetest' # Use your Docker registry service connection name
     containerRegistryType: 'Azure Container Registry'
     # dockerRegistryServiceConnectionSecretName: 'your-secret-name' # Name of the Kubernetes secret containing your ACR credentials\
-    overrideOptions: '--set=image.tag=$(Build.BuildId)'  # Pass the dynamic tag to the Kubernetes manifest
+    # overrideOptions: '--set=image.tag=$(Build.BuildId)'  # Pass the dynamic tag to the Kubernetes manifest
 
      
