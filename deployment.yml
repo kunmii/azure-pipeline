@@ -1,0 +1,51 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kunmi-app
+  annotations:
+    kubernetes.io/change-cause: "Updating docker image from v1 to v2"
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: kunmi-app
+  template:
+    metadata:
+      name: kunmi-app
+      labels:
+        env: prod
+        app: kunmi-app
+        app.kubernetes.io/name: kunmi-app
+    spec:
+      containers:
+        - name: kunmi-app
+          image: kunmipipelinetest.azurecr.io/testing:$(tag)
+          ports:
+            - containerPort: 80
+              name: http-web-api
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
+          env:
+            - name: ASPNETCORE_URLS
+              value: http://+:80	
+              
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-lb-service
+spec:
+  selector:
+    app.kubernetes.io/name: kunmi-app
+  ports:
+    - name: kunmi-app-app-port
+      protocol: TCP
+      port: 8080
+      targetPort: 80
+  type: LoadBalancer
