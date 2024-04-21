@@ -25,7 +25,7 @@ steps:
     addPipelineData: false
 
 - task: Kubernetes@1
-  displayName: 'Deploy to kubernetes'
+  displayName: 'Deploy to Kubernetes'
   inputs:
     connectionType: 'Azure Resource Manager'
     azureSubscriptionEndpoint: '$(azureSubscription)'
@@ -34,9 +34,8 @@ steps:
     namespace: 'default'
     command: 'apply'
     arguments: '-f ./deployment.yml'
-    secretType: 'dockerRegistry' # If needed, specify the secret type
-    dockerRegistryEndpoint: 'kunmipipelinetest' # Use your Docker registry service connection name
-    dockerRegistryServiceConnection: 'kunmipipelinetest' # Use your Docker registry service connection name
+    secretType: 'dockerRegistry'
+    dockerRegistryEndpoint: 'kunmipipelinetest.azurecr.io'
+    dockerRegistryServiceConnection: 'kunmipipelinetest'
     containerRegistryType: 'Azure Container Registry'
-    dockerRegistryServiceConnectionSecretName: 'acrsecret' # Name of the Kubernetes secret containing your ACR credentials\
-    # overrideOptions: '--set=image.tag=$(Build.BuildId)'  # Pass the dynamic tag to the Kubernetes manifest
+    dockerRegistryServiceConnectionSecretName: 'acrsecret'
