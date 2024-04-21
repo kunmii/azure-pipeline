@@ -6,6 +6,7 @@ variables:
     # imageRepository: 'test'
     # containerRegistry: 'kunmipipelinetest.azurecr.io'
     # dockerfilePath: '$(Build.SourcesDirectory)/app/Dockerfile'
+    azureSubscription: 'tochipipelinetest'
     tag: '$(Build.BuildId)'
 pool:
   vmImage: ubuntu-latest
