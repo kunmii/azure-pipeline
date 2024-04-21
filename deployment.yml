@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: kunmi-app
-          image: kunmipipelinetest.azurecr.io/testing:31
+          image: kunmipipelinetest.azurecr.io/testing:49
           ports:
             - containerPort: 80
               name: http-web-api
